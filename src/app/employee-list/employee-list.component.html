@@ -1,0 +1,55 @@
+<div class="container" >
+    <h1>Employees</h1>
+
+    <table class="table table-striped">
+        <thead class="table-dark text-white">
+            <tr>
+                <th>Employee ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Salary</th>
+                <th>DOB</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+            <tbody *ngIf="showEdit else elseBlock">
+                <ng-container *ngIf="selectedEmployees" >
+                <tr>
+                    <td><input type="number" [(ngModel)]="selectedEmployees.employeeId"/></td>
+                    <td><input type="text" [(ngModel)]="selectedEmployees.firstName"/></td>
+                    <td><input type="text" [(ngModel)]="selectedEmployees.lastName"/></td>
+                    <td><input type="number" [(ngModel)]="selectedEmployees.salary"/></td>
+                    <td><input type="text" [(ngModel)]="selectedEmployees.dob"/></td>
+                    <td><input type="text" [(ngModel)]="selectedEmployees.email"/></td>
+                    <td>
+                        <button type="button" class="btn btn-primary"
+                        (click)="UpdateEmp(selectedEmployees)">Update</button>
+                    </td>
+                </tr>
+            </ng-container>
+            </tbody>
+            <ng-template #elseBlock>
+            <tbody>
+                <tr *ngFor="let emp of allEmployees">
+                    <td>{{emp.employeeId}}</td>
+                    <td>{{emp.firstName}}</td>
+                    <td>{{emp.lastName}}</td>
+                    <td>{{emp.salary}}</td>
+                    <td>{{emp.dob | date: 'short'}}</td>
+                    <td>{{emp.email}}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary"
+                        (click)="EditEmp(emp)">Edit</button>
+                    </td>
+                </tr>
+            </tbody>
+            </ng-template>
+        
+    
+    </table>
+
+</div>
+
+
+
